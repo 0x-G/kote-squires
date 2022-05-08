@@ -1,0 +1,24 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Squires
+    network: arbitrum-one
+    source:
+      address: "0xf7fbe8eec9063aa518d11639565b018468bb4abb"
+      abi: Squires
+      startBlock: 10050034
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Squire
+      abis:
+        - name: Squires
+          file: Squires\abis\Squires.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: Squires\Squires.wasm
